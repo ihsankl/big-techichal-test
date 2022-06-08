@@ -3,6 +3,7 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from 'next';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
 import styles from '@/styles/Register.module.css';
@@ -41,6 +42,8 @@ const ReviewPageComponent: NextPage = () => {
   const businessData = useSelector<RootReducer>(
     (state) => state.AppState.businessData
   ) as BusinessData;
+
+  const router = useRouter();
 
   return (
     <div className='flex flex-row'>
@@ -196,7 +199,11 @@ const ReviewPageComponent: NextPage = () => {
             </tbody>
           </table>
 
-          <PrimaryBtn text='Next' className='mt-24 mb-8 w-full' />
+          <PrimaryBtn
+            onClick={() => router.push('/finish')}
+            text='Next'
+            className='mt-24 mb-8 w-full'
+          />
         </div>
       </section>
     </div>

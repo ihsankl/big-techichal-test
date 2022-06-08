@@ -1,0 +1,177 @@
+.step {
+  position: relative;
+  min-height: 1em;
+  color: gray;
+  z-index: 2;
+}
+
+.title {
+  line-height: 1.5em;
+  font-weight: bold;
+}
+
+.caption {
+  font-size: 0.8em;
+}
+
+.step + .step {
+  margin-top: 1.5em;
+}
+
+.step > div:first-child {
+  position: static;
+  height: 0;
+}
+
+.step > div:not(:first-child) {
+  margin-left: 1.5em;
+  padding-left: 1em;
+}
+
+/* Circle */
+.circle {
+  background: #ebeaef;
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  border-radius: 100%;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 0 3px #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Vertical Line */
+.circle:after {
+  content: ' ';
+  position: absolute;
+  display: block;
+  top: 1px;
+  right: 50%;
+  bottom: 1px;
+  left: 50%;
+  height: 100%;
+  width: 2px;
+  transform: scale(1, 2);
+  transform-origin: 50% -100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.step:last-child .circle:after {
+  display: none;
+}
+
+.step.step_active {
+  /* color: #4285f4 */
+}
+
+.step.step_active .circle {
+  background-color: #4285f4;
+}
+
+.ic_scan {
+  width: 1.5em;
+  height: 1.5em;
+  background: url('../assets/ic_scan.png') no-repeat;
+  background-position: center;
+}
+
+.ic_business {
+  width: 1.5em;
+  height: 1.5em;
+  background: url('../assets/ic_business.svg') no-repeat;
+  background-position: center;
+}
+
+.ic_business.active {
+  width: 1.5em;
+  height: 1.5em;
+  background: url('../assets/ic_business_ac.svg') no-repeat;
+  background-position: center;
+}
+
+.ic_account {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_account.png') no-repeat;
+  background-position: center;
+}
+
+.ic_account.active {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_account_ac.png') no-repeat;
+  background-position: center;
+}
+
+.ic_payment {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_payment.png') no-repeat;
+  background-position: center;
+}
+
+.ic_payment.active {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_payment_ac.png') no-repeat;
+  background-position: center;
+}
+
+.ic_term {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_term.png') no-repeat;
+  background-position: center;
+}
+
+.ic_term.active {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_term_ac.png') no-repeat;
+  background-position: center;
+}
+
+.ic_review {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_review.png') no-repeat;
+  background-position: center;
+}
+
+.ic_review.active {
+  width: 24px;
+  height: 24px;
+  background: url('../assets/ic_review_ac.png') no-repeat;
+  background-position: center;
+}
+
+.bg_stepper {
+  background: url('../assets/bg1.png') no-repeat;
+  /* fill all available space */
+  background-size: cover;
+}
+
+.border {
+  border: 1px solid #d6d6d6;
+  border-radius: 0.5em;
+}
+
+.input_identity {
+  background: url('../assets/images.png') no-repeat;
+  background-position: center;
+}
+
+.table_border {
+  border: 1px solid #d6d6d6;
+}
+
+.finish_bg {
+  background: url('../assets/finish.png') no-repeat;
+  width: 100%;
+  background-position: center;
+}

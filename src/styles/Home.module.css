@@ -1,0 +1,7 @@
+.img_background {
+  background-image: url('../assets/bg.png');
+  min-width: 25em;
+  min-height: 35em;
+  background-repeat: no-repeat;
+  background-position: center;
+}

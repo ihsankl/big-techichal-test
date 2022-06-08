@@ -1,5 +1,9 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { FC } from 'react';
+import {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+  NextPage,
+} from 'next';
+import { useSelector } from 'react-redux';
 
 import styles from '@/styles/Register.module.css';
 
@@ -8,6 +12,12 @@ import Stepper from '@/components/layout/Stepper';
 import Image from '@/components/NextImage';
 
 import logo from '@/assets/logo.png';
+import { RootReducer } from '@/redux/slicer';
+import {
+  AccountData,
+  BusinessData,
+  OwnerData,
+} from '@/redux/slicer/appstate.slicer';
 
 export default function ReviewPage({
   ...props
@@ -21,7 +31,17 @@ export async function getServerSideProps(_ctx: GetServerSidePropsContext) {
   };
 }
 
-const ReviewPageComponent: FC = () => {
+const ReviewPageComponent: NextPage = () => {
+  const ownerData = useSelector<RootReducer>(
+    (state) => state.AppState.ownerData
+  ) as OwnerData;
+  const accountData = useSelector<RootReducer>(
+    (state) => state.AppState.accountData
+  ) as AccountData;
+  const businessData = useSelector<RootReducer>(
+    (state) => state.AppState.businessData
+  ) as BusinessData;
+
   return (
     <div className='flex flex-row'>
       <Stepper activeItems={[0, 1, 2, 3, 4, 5]} />
@@ -38,7 +58,7 @@ const ReviewPageComponent: FC = () => {
                 <td>
                   <h4>Owner full name</h4>
                 </td>
-                <td>Artist</td>
+                <td>{ownerData.ownerFullname}</td>
               </tr>
             </tbody>
             <tbody>
@@ -46,18 +66,34 @@ const ReviewPageComponent: FC = () => {
                 <td>
                   <h4>Owner email</h4>
                 </td>
-                <td>Malcolm Lockyer</td>
+                <td>{ownerData.ownerEmail}</td>
               </tr>
               <tr>
                 <td>
                   <h4>Owner phone number</h4>
                 </td>
-                <td>The Eagles</td>
+                <td>{ownerData.ownerPhone}</td>
               </tr>
               <tr>
                 <td colSpan={2}>
                   <h4>Owner identity Card</h4>
-                  <div className={`h-96 w-full ${styles.input_identity}`}></div>
+                  <div
+                    className={`h-96 w-full ${
+                      ownerData.ownerIdentityCard ? '' : styles.input_identity
+                    }`}
+                  >
+                    {!!ownerData.ownerIdentityCard && (
+                      <Image
+                        useSkeleton
+                        src={ownerData.ownerIdentityCard}
+                        layout='responsive'
+                        objectFit='contain'
+                        height='30em'
+                        width='100%'
+                        alt='Icon'
+                      />
+                    )}
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -71,7 +107,7 @@ const ReviewPageComponent: FC = () => {
                 <td>
                   <h4>Business name</h4>
                 </td>
-                <td>Artist</td>
+                <td>{businessData.businessName}</td>
               </tr>
             </tbody>
             <tbody>
@@ -79,42 +115,60 @@ const ReviewPageComponent: FC = () => {
                 <td>
                   <h4>Business phone number</h4>
                 </td>
-                <td>Malcolm Lockyer</td>
+                <td>{businessData.businessPhoneNumber}</td>
               </tr>
               <tr>
                 <td>
                   <h4>Country</h4>
                 </td>
-                <td>The Eagles</td>
+                <td>{businessData.businessCountry}</td>
               </tr>
               <tr>
                 <td>
                   <h4>Province / State</h4>
                 </td>
-                <td>The Eagles</td>
+                <td>{businessData.businessState}</td>
               </tr>
               <tr>
                 <td>
                   <h4>City</h4>
                 </td>
-                <td>The Eagles</td>
+                <td>{businessData.businessCity}</td>
               </tr>
               <tr>
                 <td>
                   <h4>Complete Address</h4>
                 </td>
-                <td>The Eagles</td>
+                <td>{businessData.businessCompleteAddress}</td>
               </tr>
               <tr>
                 <td>
                   <h4>PIN Location</h4>
                 </td>
-                <td>The Eagles</td>
+                <td>{businessData.businessPINLocation}</td>
               </tr>
               <tr>
                 <td colSpan={2}>
-                  <h4>Owner identity Card</h4>
-                  <div className={`h-96 w-full ${styles.input_identity}`}></div>
+                  <h4>Business profile picture</h4>
+                  <div
+                    className={`h-96 w-full ${
+                      businessData.businessProfilePicture
+                        ? ''
+                        : styles.input_identity
+                    }`}
+                  >
+                    {!!businessData.businessProfilePicture && (
+                      <Image
+                        useSkeleton
+                        src={businessData.businessProfilePicture}
+                        layout='responsive'
+                        objectFit='contain'
+                        height='30em'
+                        width='100%'
+                        alt='Icon'
+                      />
+                    )}
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -129,7 +183,7 @@ const ReviewPageComponent: FC = () => {
                 <td>
                   <h4>Email</h4>
                 </td>
-                <td>Artist</td>
+                <td>{accountData.accountEmail}</td>
               </tr>
             </tbody>
             <tbody>
@@ -137,7 +191,7 @@ const ReviewPageComponent: FC = () => {
                 <td>
                   <h4>Phone Number</h4>
                 </td>
-                <td>Malcolm Lockyer</td>
+                <td>{accountData.accountPhone}</td>
               </tr>
             </tbody>
           </table>

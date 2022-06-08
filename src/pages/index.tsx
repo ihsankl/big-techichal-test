@@ -3,6 +3,7 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from 'next';
+import { useRouter } from 'next/router';
 
 import styles from '@/styles/Home.module.css';
 
@@ -24,6 +25,11 @@ export async function getServerSideProps(_ctx: GetServerSidePropsContext) {
 }
 
 const HomePageComponent: NextPage = () => {
+  const router = useRouter();
+
+  const handleNavigate = () => {
+    router.push('/register');
+  };
   return (
     <>
       <section className='px-12 py-10'>
@@ -39,7 +45,7 @@ const HomePageComponent: NextPage = () => {
           world. Register, earn money, and let’s get rich!{' '}
         </p>
         <div className='mt-5 flex w-full justify-center'>
-          <PrimaryBtn text='Register Now' />
+          <PrimaryBtn onClick={handleNavigate} text='Register Now' />
         </div>
       </section>
       <div className={styles.img_background} />
